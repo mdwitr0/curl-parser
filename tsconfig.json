@@ -3,6 +3,9 @@
     "target": "ES5",
     "lib": ["ES2015"],
     "types": ["jest"],
-    "esModuleInterop": true
-  }
+    "esModuleInterop": true,
+    "paths": {
+      "*": ["src/*"]
+    }
+  },
 }
