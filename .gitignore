@@ -1,0 +1,4 @@
+#base git ignore
+.node-modules
+.vscode
+.idea

@@ -1,0 +1,18 @@
+{
+  "name": "@mdwitor/curl-parse",
+  "version": "1.0.0",
+  "description": "Library for transforming curl commands into an object",
+  "source": "src/index.ts",
+  "main": "dist/main.js",
+  "types": "dist/types.d.ts",
+  "module": "dist/module.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["curl", "parse", "curl-parse", "curl to json", "curl to object"],
+  "author": "Evgenii Fedoriachenko",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^2.7.0"
+  }
+}
