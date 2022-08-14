@@ -1,2 +1,1 @@
-export const curlToObject = <T>(curlStr: string): any => {
-}
+export {curlToObject} from './curl-to-object';
