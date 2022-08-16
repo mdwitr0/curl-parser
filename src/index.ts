@@ -1,1 +1,2 @@
-export {curlToObject} from './curl-to-object';
+export * from "./curl-parser";
+export * from "./interface";

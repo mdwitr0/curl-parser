@@ -1,5 +1,5 @@
 {
-  "name": "@mdwitor/curl-parse",
+  "name": "@mdwitr0/curl-parser",
   "version": "1.0.0",
   "description": "Library for transforming curl commands into an object",
   "author": "Evgenii Fedoriachenko",
