@@ -1,11 +1,17 @@
 {
   "compilerOptions": {
     "target": "ES5",
-    "lib": ["ES2015"],
-    "types": ["jest"],
+    "lib": [
+      "es2021"
+    ],
+    "types": [
+      "jest"
+    ],
     "esModuleInterop": true,
     "paths": {
-      "*": ["/src/*"]
+      "*": [
+        "/src/*"
+      ]
     }
-  },
+  }
 }
