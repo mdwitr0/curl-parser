@@ -1,5 +1,12 @@
-**/.eslintrc.js
-**/.eslintignore
-**/.parcel-cache
-**/.github/README.md
-coverage
+**/*.ts
+*.ts
+
+!**/*.d.ts
+!*.d.ts
+
+package-lock.json
+tslint.json
+tsconfig.json
+.prettierrc
+.idea
+.vscode
