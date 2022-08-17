@@ -7,6 +7,7 @@
     "types": [
       "jest"
     ],
+    "outDir": "dist",
     "esModuleInterop": true,
     "paths": {
       "*": [
