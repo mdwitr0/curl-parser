@@ -43,14 +43,20 @@ export interface IProxy {
   protocol?: string;
 }
 
-export interface IOutput<D = any> {
+export type UrlObject = {
+  href?: string;
   url?: string;
-  method?: Method;
   baseURL?: string;
+  params?: { [k: string]: any };
+};
+
+export type RequestObject<D> = {
+  method?: Method;
   headers?: Headers;
-  params?: any;
   data?: D;
   timeout?: number;
   auth?: ICredentials;
   proxy?: IProxy | false;
-}
+};
+
+export type Output<D, P> = RequestObject<D> & UrlObject;
