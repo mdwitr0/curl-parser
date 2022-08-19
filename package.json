@@ -1,6 +1,6 @@
 {
   "name": "@mdwitr0/curl-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library for transforming curl commands into an object",
   "author": "Evgenii Fedoriachenko",
   "license": "MIT",
