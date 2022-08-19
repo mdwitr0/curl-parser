@@ -30,7 +30,7 @@ export type RequestObject<D> = {
     auth?: ICredentials;
     proxy?: IProxy | false;
 };
-export type Output<D, P> = RequestObject<D> & UrlObject;
-export const curlToObject: <D>(curlStr: string) => any;
+export type Output<D> = RequestObject<D> & UrlObject;
+export const curlToObject: <D>(curlStr: string) => Output<D>;
 
 //# sourceMappingURL=types.d.ts.map
