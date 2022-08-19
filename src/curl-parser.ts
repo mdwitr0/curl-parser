@@ -1,19 +1,16 @@
 import {URL} from 'url'
 import {UrlObject} from "./interface";
+import {ARGS_PATTERN, QUOTES_PATTERN, URL_PATTERN} from "./regexp-patterns"
 
 const split = (str: string): string[] => {
     if (!str) return [];
-    const argsRegexp =
-        /\s*(?:([^\s\\\'\"]+)|'((?:[^\'\\]|\\.)*)'|"((?:[^\"\\]|\\.)*)"|(\\.?)|(\S))(\s|$)?/g;
 
-    const args = str.match(argsRegexp);
-    return args?.map((i) => i.trim().replace(/'/g, "")) || [];
+    const args = str.match(ARGS_PATTERN);
+    return args?.map((i) => i.trim().replace(QUOTES_PATTERN, "")) || [];
 };
 
 const getUrl = <D>(args: string[]): UrlObject | null => {
-    const regex =
-        /^(ftp|http|https)?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/g;
-    const foundUrl = args.find((a) => regex.test(a));
+    const foundUrl = args.find((a) => URL_PATTERN.test(a));
 
     if (foundUrl) {
         const obj = new URL(foundUrl);
