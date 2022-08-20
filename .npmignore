@@ -4,6 +4,8 @@
 !**/*.d.ts
 !*.d.ts
 
+.eslintignore
+.parcel-cache
 package-lock.json
 tslint.json
 tsconfig.json
