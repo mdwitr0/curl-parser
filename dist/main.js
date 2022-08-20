@@ -24,7 +24,7 @@ var $05e2d272004f14ce$exports = {};
 $parcel$export($05e2d272004f14ce$exports, "curlToObject", () => $05e2d272004f14ce$export$a2fe3c907bb1ef90);
 
 const $d3d779e7010fd1ab$export$9a401b161026db9a = /\s*(?:([^\s\\\'\"]+)|'((?:[^\'\\]|\\.)*)'|"((?:[^\"\\]|\\.)*)"|(\\.?)|(\S))(\s|$)?/g;
-const $d3d779e7010fd1ab$export$8a0fb7e99084a77a = /^(ftp|http|https)?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/g;
+const $d3d779e7010fd1ab$export$8a0fb7e99084a77a = /^(ftp|http|https)?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}(\.|:)[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/g;
 const $d3d779e7010fd1ab$export$62930438b441effe = /'/g;
 
 
@@ -121,16 +121,21 @@ const $05e2d272004f14ce$var$getFlagValues = (flag, args)=>{
     args.forEach((arg, index)=>{
         if ((0, $bc3dd75ec79d1760$export$c45bf7f3be8a7523)[flag].includes(arg)) {
             const value = args[index + 1];
-            const key = (0, $bc3dd75ec79d1760$export$4dab763001eff6b8)?.[flag][0];
-            if (!result[key]) result[key] = {};
-            switch(flag){
-                case (0, $bc3dd75ec79d1760$export$fe5ecf0dd837dea2).HEADER:
-                    const values = value.split(": ");
-                    result[key][values[0]] = values[1];
-                    break;
-                default:
-                    result[key] = value;
-                    break;
+            const key = (0, $bc3dd75ec79d1760$export$4dab763001eff6b8)?.[flag]?.[0];
+            if (key) {
+                if (!result[key]) result[key] = {};
+                switch(flag){
+                    case (0, $bc3dd75ec79d1760$export$fe5ecf0dd837dea2).HEADER:
+                        const values = value.split(": ");
+                        result[key][values[0]] = values[1];
+                        break;
+                    case (0, $bc3dd75ec79d1760$export$fe5ecf0dd837dea2).DATA:
+                        result[key] = JSON.parse(value);
+                        break;
+                    default:
+                        result[key] = value;
+                        break;
+                }
             }
         }
     });

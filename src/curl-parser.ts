@@ -32,17 +32,21 @@ const getFlagValues = <D>(flag: FLAGS, args: string[]): Partial<RequestObject<D>
     args.forEach((arg, index) => {
         if (FLAG_VARIANTS[flag].includes(arg)) {
             const value = args[index + 1]
-            const key = FLAG_IN_KEY?.[flag][0]
-            if (!result[key]) result[key] = {}
-            
-            switch (flag) {
-                case FLAGS.HEADER:
-                    const values = value.split(": ")
-                    result[key][values[0]] = values[1]
-                    break;
-                default:
-                    result[key] = value
-                    break;
+            const key = FLAG_IN_KEY?.[flag]?.[0]
+            if (key) {
+                if (!result[key]) result[key] = {}
+                switch (flag) {
+                    case FLAGS.HEADER:
+                        const values = value.split(": ")
+                        result[key][values[0]] = values[1]
+                        break;
+                    case FLAGS.DATA:
+                        result[key] = JSON.parse(value)
+                        break;
+                    default:
+                        result[key] = value
+                        break;
+                }
             }
         }
     })

@@ -8,7 +8,7 @@ var $787dfd7182da8517$exports = {};
 $parcel$export($787dfd7182da8517$exports, "curlToObject", () => $787dfd7182da8517$export$a2fe3c907bb1ef90);
 
 const $5bb83e05956b5aee$export$9a401b161026db9a = /\s*(?:([^\s\\\'\"]+)|'((?:[^\'\\]|\\.)*)'|"((?:[^\"\\]|\\.)*)"|(\\.?)|(\S))(\s|$)?/g;
-const $5bb83e05956b5aee$export$8a0fb7e99084a77a = /^(ftp|http|https)?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/g;
+const $5bb83e05956b5aee$export$8a0fb7e99084a77a = /^(ftp|http|https)?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}(\.|:)[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/g;
 const $5bb83e05956b5aee$export$62930438b441effe = /'/g;
 
 
@@ -105,16 +105,21 @@ const $787dfd7182da8517$var$getFlagValues = (flag, args)=>{
     args.forEach((arg, index)=>{
         if ((0, $09c6b4a870d35320$export$c45bf7f3be8a7523)[flag].includes(arg)) {
             const value = args[index + 1];
-            const key = (0, $09c6b4a870d35320$export$4dab763001eff6b8)?.[flag][0];
-            if (!result[key]) result[key] = {};
-            switch(flag){
-                case (0, $09c6b4a870d35320$export$fe5ecf0dd837dea2).HEADER:
-                    const values = value.split(": ");
-                    result[key][values[0]] = values[1];
-                    break;
-                default:
-                    result[key] = value;
-                    break;
+            const key = (0, $09c6b4a870d35320$export$4dab763001eff6b8)?.[flag]?.[0];
+            if (key) {
+                if (!result[key]) result[key] = {};
+                switch(flag){
+                    case (0, $09c6b4a870d35320$export$fe5ecf0dd837dea2).HEADER:
+                        const values = value.split(": ");
+                        result[key][values[0]] = values[1];
+                        break;
+                    case (0, $09c6b4a870d35320$export$fe5ecf0dd837dea2).DATA:
+                        result[key] = JSON.parse(value);
+                        break;
+                    default:
+                        result[key] = value;
+                        break;
+                }
             }
         }
     });
